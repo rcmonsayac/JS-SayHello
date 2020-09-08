@@ -23,11 +23,20 @@ keys.forEach((key) => {
         }
         if(action === "submit"){
             let inputName = document.querySelector(".input-name");
-            displayScreen.dataset.currentName = inputName.value;
-            addToDisplay(inputName.value, displayScreen);
-            inputName.value = "";
-
+            if(inputName.value){
+                displayScreen.dataset.currentName = inputName.value;
+                addToDisplay(inputName.value, displayScreen);
+                inputName.value = "";
+            }
         }
+
+        if(action === "name"){
+            let inputName = key.textContent;
+            displayScreen.dataset.currentName = inputName;
+            addToDisplay(inputName, displayScreen);
+        }
+
+
     })
 });
 
