@@ -6,18 +6,29 @@ function addToDisplay(message, displayScreen) {
 
 //main
 
-let helloBtn = document.querySelector(".hello-btn");
-let submitBtn = document.querySelector(".submit-btn");
+let keys = document.querySelectorAll("._key");
 let displayScreen = document.querySelector(".display-screen");
-let inpt
 
-helloBtn.addEventListener("click", e => { 
-    addToDisplay("Hello World!", displayScreen);
-});
+keys.forEach((key) => {
+    key.addEventListener("click", e => {
+        let action = key.dataset.action;
+        if(action === "hello"){
+            if(displayScreen.dataset.currentName){
+                addToDisplay(`Hello, ${displayScreen.dataset.currentName}!`, displayScreen);
+            }
+            else{
+                addToDisplay("Hello World!", displayScreen);
+            }
+            
+        }
+        if(action === "submit"){
+            let inputName = document.querySelector(".input-name");
+            displayScreen.dataset.currentName = inputName.value;
+            addToDisplay(inputName.value, displayScreen);
+            inputName.value = "";
 
-submitBtn.addEventListener("click", e => { 
-    let inputName = document.querySelector(".input-name").value;
-    addToDisplay(inputName, displayScreen);
+        }
+    })
 });
 
 
