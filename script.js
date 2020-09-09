@@ -21,6 +21,17 @@ keys.forEach((key) => {
             }
             
         }
+
+        if(action === "goodbye"){
+            if(displayScreen.dataset.currentName){
+                addToDisplay(`Goodbye, ${displayScreen.dataset.currentName}!`, displayScreen);
+            }
+            else{
+                addToDisplay("GoodBye World!", displayScreen);
+            }
+            
+        }
+
         if(action === "submit"){
             let inputName = document.querySelector(".input-name");
             if(inputName.value){
