@@ -4,6 +4,65 @@ function addToDisplay(message, displayScreen) {
     displayScreen.textContent = message;
 }
 
+function getDisplayMessage(key, displayScreen) {
+    let action = key.dataset.action;
+    switch (action) {
+        case "hello":
+            if (displayScreen.dataset.currentName) {
+                return `Hello, ${displayScreen.dataset.currentName}!`;
+            }
+            else {
+                return "Hello World!"
+            }
+        case "goodbye":
+            if (displayScreen.dataset.currentName) {
+                return `GoodBye, ${displayScreen.dataset.currentName}!`;
+            }
+            else {
+                return "GoodBye World!"
+            }
+        case "submit":
+            let inputName = document.querySelector(".input-name").value;
+            if (inputName) {
+                return inputName;
+            }
+            else{
+                return displayScreen.textContent;
+            }
+        case "name":
+            return key.textContent;
+        case "clear":
+            return "";
+    }
+}
+
+function updateState(key, displayScreen) {
+    let action = key.dataset.action;
+
+    if (action === "goodbye") {
+        key.dataset.action = "clear"
+        key.textContent = "CLEAR";
+    }
+    if (action === "clear") {
+        displayScreen.dataset.currentName = "";
+        key.dataset.action = "goodbye"
+        key.textContent = "SayGoodBye";
+    }
+
+    if (action === "submit") {
+        let inputName = document.querySelector(".input-name");
+        if (inputName.value) {
+            displayScreen.dataset.currentName = inputName.value;
+            inputName.value = "";
+        }
+    }
+
+    if (action === "name") {
+        displayScreen.dataset.currentName = key.textContent;
+    }
+}
+
+
 //main
 
 let keys = document.querySelectorAll("._key");
@@ -11,46 +70,8 @@ let displayScreen = document.querySelector(".display-screen-content");
 
 keys.forEach((key) => {
     key.addEventListener("click", e => {
-        let action = key.dataset.action;
-        if(action === "hello"){
-            if(displayScreen.dataset.currentName){
-                addToDisplay(`Hello, ${displayScreen.dataset.currentName}!`, displayScreen);
-            }
-            else{
-                addToDisplay("Hello World!", displayScreen);
-            }
-            
-        }
-
-        if(action === "goodbye"){
-            if(displayScreen.dataset.currentName){
-                addToDisplay(`Goodbye, ${displayScreen.dataset.currentName}!`, displayScreen);
-            }
-            else{
-                addToDisplay("GoodBye World!", displayScreen);
-            }
-
-            key.dataset.action = "clear"
-            key.textContent = "CLEAR";
-            
-        }
-
-        if(action === "submit"){
-            let inputName = document.querySelector(".input-name");
-            if(inputName.value){
-                displayScreen.dataset.currentName = inputName.value;
-                addToDisplay(inputName.value, displayScreen);
-                inputName.value = "";
-            } 
-        }
-
-        if(action === "name"){
-            let inputName = key.textContent;
-            displayScreen.dataset.currentName = inputName;
-            addToDisplay(inputName, displayScreen);
-        }
-
-
+        displayScreen.textContent = getDisplayMessage(key, displayScreen);
+        updateState(key, displayScreen);
     })
 });
 
