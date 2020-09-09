@@ -11,23 +11,32 @@
 
 <body>
     <div class="container">
-        <div><h2>This is the greeting calculator</h2></div>
-        <div class="input-container">
-            <input type="text" maxlength="9" class="input-name" placeholder="Enter a name..">
-            <button data-action ="submit" class="_key submit-btn">Submit</button>
+        <div class="greeting-header">This is the greeting calculator!</div>
+        <div class="greeting-container">
+
+            <div class="input-container">
+                <input type="text" maxlength="30" class="input-name" placeholder="Enter a name..">
+                <button data-action="submit" class="_key submit-btn">Submit</button>
+            </div>
+            <div class="calc-container">
+                <div class="display-screen">
+                    <div class="display-screen-content"></div>
+                </div>
+                <div class="preset-names-container">
+                    <button data-action="name" class="_key name-btn">Rommel</button>
+                    <button data-action="name" class="_key name-btn">Jhake</button>
+                    <button data-action="name" class="_key name-btn">Finn</button>
+                    <button data-action="name" class="_key name-btn">Victor</button>
+                    <button data-action="name" class="_key name-btn">John</button>
+                    <button data-action="name" class="_key name-btn">Test</button>
+                </div>
+                <div class="greet-container">
+                    <button data-action="hello" class="_key greet-btn">SayHello</button>
+                    <button data-action="goodbye" class="_key greet-btn">SayGoodBye</button>
+                </div>
+            </div>
         </div>
-        <div class="display-screen"></div>
-        <div class="preset-names-container">
-            <button data-action ="name" class="_key name-btn">Rommel</button>
-            <button data-action ="name" class="_key name-btn">Jhake</button>
-            <button data-action ="name" class="_key name-btn">Finn</button>
-            <button data-action ="name" class="_key name-btn">Victor</button>
-            <button data-action ="name" class="_key name-btn">John</button>
-            <button data-action ="name" class="_key name-btn">Test</button>
-        </div>
-        <div>
-            <button data-action ="hello" class="_key hello-btn">Hello</button>
-        </div>
+
     </div>
     <script src="./script.js"></script>
 </body>

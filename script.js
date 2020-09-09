@@ -7,7 +7,7 @@ function addToDisplay(message, displayScreen) {
 //main
 
 let keys = document.querySelectorAll("._key");
-let displayScreen = document.querySelector(".display-screen");
+let displayScreen = document.querySelector(".display-screen-content");
 
 keys.forEach((key) => {
     key.addEventListener("click", e => {
@@ -27,7 +27,7 @@ keys.forEach((key) => {
                 displayScreen.dataset.currentName = inputName.value;
                 addToDisplay(inputName.value, displayScreen);
                 inputName.value = "";
-            }
+            } 
         }
 
         if(action === "name"){
