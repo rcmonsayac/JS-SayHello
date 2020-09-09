@@ -29,6 +29,9 @@ keys.forEach((key) => {
             else{
                 addToDisplay("GoodBye World!", displayScreen);
             }
+
+            key.dataset.action = "clear"
+            key.textContent = "CLEAR";
             
         }
 
